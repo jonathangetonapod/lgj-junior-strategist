@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Junior Strategist · LeadGenJay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg-elev: #131313;
+    --bg-card: #171717;
+    --border: #262626;
+    --border-bright: #404040;
+    --text: #fafafa;
+    --text-dim: #a3a3a3;
+    --text-muted: #737373;
+    --accent: #ec4899;
+    --accent-bright: #f472b6;
+    --accent-dim: #be185d;
+    --accent-glow: rgba(236, 72, 153, 0.18);
+    --gradient: linear-gradient(135deg, #f472b6 0%, #ec4899 50%, #be185d 100%);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--accent); color: white; }
+
+  /* Scroll progress bar */
+  .progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    background: var(--accent);
+    z-index: 1000;
+    transition: width 0.1s ease;
+    box-shadow: 0 0 10px var(--accent);
+  }
+
+  /* Nav */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1rem 2rem;
+    backdrop-filter: blur(20px);
+    background: rgba(10, 10, 10, 0.75);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .logo img {
+    height: 32px;
+    width: auto;
+    display: block;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta {
+    background: var(--accent);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .nav-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px var(--accent-glow);
+  }
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+  }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(64, 64, 64, 0.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(64, 64, 64, 0.15) 1px, transparent 1px);
+    background-size: 50px 50px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.9rem;
+    background: rgba(236, 72, 153, 0.1);
+    border: 1px solid rgba(236, 72, 153, 0.35);
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--accent-bright);
+    margin-bottom: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .hero-tag .pulse {
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 var(--accent); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 6px transparent; }
+  }
+  h1 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+    max-width: 900px;
+  }
+  h1 .accent {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero-sub {
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    color: var(--text-dim);
+    max-width: 620px;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+  }
+  .btn {
+    padding: 0.9rem 1.6rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px var(--accent-glow);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border-bright);
+  }
+  .btn-ghost:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    max-width: 900px;
+  }
+  .stat-num {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .stat-label {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+  }
+
+  /* Sections */
+  section {
+    padding: 6rem 2rem;
+    position: relative;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .section-tag {
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  h2 {
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+    max-width: 900px;
+  }
+  .section-sub {
+    color: var(--text-dim);
+    font-size: 1.1rem;
+    max-width: 720px;
+    margin-bottom: 4rem;
+    line-height: 1.65;
+  }
+
+  /* About LGJ */
+  .lgj-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  @media (max-width: 900px) { .lgj-grid { grid-template-columns: 1fr; } }
+  .lgj-text p {
+    color: var(--text-dim);
+    margin-bottom: 1.25rem;
+    font-size: 1.05rem;
+  }
+  .lgj-text strong { color: var(--text); font-weight: 600; }
+  .lgj-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+  .stack-chip {
+    padding: 0.4rem 0.8rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .lgj-visual {
+    aspect-ratio: 1;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .lgj-visual::before {
+    content: '';
+    position: absolute;
+    top: -50%; right: -50%;
+    width: 100%; height: 100%;
+    background: radial-gradient(circle, var(--accent-glow), transparent 70%);
+  }
+  .lgj-mini-stat {
+    position: relative;
+    z-index: 1;
+  }
+  .lgj-mini-stat .num {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+  .lgj-mini-stat .lbl {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+  .lgj-mini-stat + .lgj-mini-stat { margin-top: 1.5rem; }
+
+  /* Founder */
+  .founder {
+    background: var(--bg-elev);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .founder-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  @media (max-width: 900px) { .founder-grid { grid-template-columns: 1fr; } }
+  .founder-card {
+    aspect-ratio: 4/5;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .founder-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 30% 20%, var(--accent-glow), transparent 50%),
+      linear-gradient(180deg, transparent 50%, rgba(23,23,23,0.95) 85%, var(--bg-card));
+    z-index: 1;
+  }
+  .founder-card-content {
+    position: relative;
+    z-index: 2;
+  }
+  .founder-photo {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    z-index: 0;
+  }
+  .founder-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .founder-title {
+    color: var(--accent-bright);
+    font-size: 0.9rem;
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 0.25rem;
+  }
+  .founder-press {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  .press-chip {
+    padding: 0.3rem 0.7rem;
+    background: rgba(236, 72, 153, 0.08);
+    border: 1px solid rgba(236, 72, 153, 0.25);
+    border-radius: 100px;
+    font-size: 0.75rem;
+    color: var(--accent-bright);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .founder-text p {
+    color: var(--text-dim);
+    font-size: 1.05rem;
+    margin-bottom: 1.25rem;
+  }
+  .founder-text strong { color: var(--text); font-weight: 600; }
+  .founder-quote {
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.45;
+    padding-left: 1.5rem;
+    border-left: 3px solid var(--accent);
+    margin: 1.5rem 0;
+    font-style: italic;
+    letter-spacing: -0.01em;
+  }
+
+  /* Team Colombia */
+  .team-colombia {
+    background: var(--bg);
+  }
+  .team-flag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+  .team-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.75rem;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .team-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+  }
+  .team-card.lead {
+    background: linear-gradient(180deg, rgba(236, 72, 153, 0.08), var(--bg-card));
+    border-color: rgba(236, 72, 153, 0.3);
+  }
+  .team-avatar {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: white;
+    margin-bottom: 1rem;
+  }
+  .team-name {
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .team-role {
+    color: var(--accent-bright);
+    font-size: 0.85rem;
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+  }
+  .team-desc {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  /* Role at a glance */
+  .glance-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-bottom: 4rem;
+  }
+  .glance-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.2s;
+  }
+  .glance-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+  }
+  .glance-card.highlight {
+    background: linear-gradient(180deg, rgba(236, 72, 153, 0.12), var(--bg-card));
+    border-color: rgba(236, 72, 153, 0.5);
+  }
+  .glance-extra {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    margin-top: 0.4rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .glance-icon {
+    width: 36px; height: 36px;
+    background: rgba(236, 72, 153, 0.12);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-bright);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+  .glance-label {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+  }
+  .glance-value {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  /* Pillars */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .pillar {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+  .pillar:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+  }
+  .pillar:hover .pillar-num {
+    color: var(--accent);
+    -webkit-text-stroke: 0;
+  }
+  .pillar-num {
+    font-size: 5rem;
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--border-bright);
+    line-height: 1;
+    font-family: 'JetBrains Mono', monospace;
+    transition: all 0.3s;
+    margin-bottom: 1rem;
+  }
+  .pillar-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+  .pillar-desc {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+  .pillar-list {
+    list-style: none;
+    padding: 0;
+  }
+  .pillar-list li {
+    padding: 0.5rem 0;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+  .pillar-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  /* Learn list */
+  .learn-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+  .learn-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.2s;
+  }
+  .learn-item:hover {
+    border-color: var(--border-bright);
+    background: var(--bg-elev);
+  }
+  .learn-title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .learn-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .learn-desc {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+  }
+
+  /* Fit */
+  .fit {
+    background: var(--bg-elev);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .fit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+  @media (max-width: 800px) { .fit-grid { grid-template-columns: 1fr; } }
+  .fit-col h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    letter-spacing: -0.01em;
+  }
+  .fit-col.yes h3 { color: var(--accent-bright); }
+  .fit-col.no h3 { color: #ef4444; }
+  .fit-col ul {
+    list-style: none;
+  }
+  .fit-col li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+  .fit-col li:last-child { border-bottom: none; }
+  .fit-col.yes li::before { content: '✓'; color: var(--accent-bright); font-weight: 700; }
+  .fit-col.no li::before { content: '✕'; color: #ef4444; font-weight: 700; }
+
+  /* Medellín */
+  .office {
+    text-align: center;
+    background:
+      radial-gradient(circle at top, var(--accent-glow), transparent 60%),
+      var(--bg);
+  }
+  .office h2 { margin-left: auto; margin-right: auto; }
+  .office .section-sub { margin-left: auto; margin-right: auto; }
+  .office-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 0.95rem;
+    color: var(--text);
+    margin-top: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .office-pin {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--accent);
+    animation: pulse 2s infinite;
+  }
+
+  /* Salary path */
+  .path {
+    background: var(--bg-elev);
+    border-top: 1px solid var(--border);
+  }
+  .path-track {
+    position: relative;
+    margin-top: 4rem;
+    padding: 2rem 0;
+  }
+  .path-line {
+    position: absolute;
+    top: 50%;
+    left: 5%; right: 5%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--border-bright), var(--accent));
+    transform: translateY(-50%);
+  }
+  .path-stops {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    position: relative;
+    gap: 1rem;
+  }
+  .path-stop {
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .path-stop:hover { transform: translateY(-4px); }
+  .path-dot {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--border-bright);
+    margin: 0 auto 1.5rem;
+    transition: all 0.2s;
+    position: relative;
+    z-index: 1;
+  }
+  .path-stop:hover .path-dot,
+  .path-stop.active .path-dot {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 20px var(--accent-glow);
+  }
+  .path-role {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+  .path-salary {
+    color: var(--accent-bright);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .path-note {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+
+  /* English requirement banner */
+  .english-alert {
+    max-width: 720px;
+    margin: 0 auto 2.5rem;
+    background: rgba(236, 72, 153, 0.08);
+    border: 1px solid rgba(236, 72, 153, 0.4);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .english-alert-icon {
+    flex-shrink: 0;
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    background: var(--accent);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.85rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .english-alert-content { flex: 1; }
+  .english-alert-title {
+    color: var(--accent-bright);
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.02em;
+  }
+  .english-alert-text {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  .english-alert-text strong { color: var(--text); }
+
+  /* Apply */
+  .apply {
+    text-align: center;
+    padding: 8rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .apply::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1000px; height: 1000px;
+    background: radial-gradient(circle, var(--accent-glow), transparent 60%);
+    pointer-events: none;
+  }
+  .apply-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .apply h2 { margin: 0 auto 1.5rem; }
+  .apply p {
+    color: var(--text-dim);
+    font-size: 1.15rem;
+    margin-bottom: 2.5rem;
+  }
+  .apply-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.2rem 2.5rem;
+    background: var(--accent);
+    color: white;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .apply-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 20px 40px var(--accent-glow);
+  }
+  .apply-meta {
+    margin-top: 2rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 3rem 2rem 2rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+  footer .logo { justify-content: center; margin-bottom: 1rem; }
+
+  /* Reveal animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">
+      <img src="logo.png" alt="LeadGenJay" />
+    </div>
+    <ul class="nav-links">
+      <li><a href="#empresa">Empresa</a></li>
+      <li><a href="#jay">Jay</a></li>
+      <li><a href="#equipo">Equipo</a></li>
+      <li><a href="#rol">El rol</a></li>
+    </ul>
+    <a href="#aplicar" class="nav-cta">Aplicar →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1.5rem">
+      <div class="hero-tag" style="margin-bottom:0">
+        <span class="pulse"></span>
+        VACANTE ABIERTA · COLOMBIA / REMOTO
+      </div>
+      <div class="hero-tag" style="margin-bottom:0;background:rgba(236,72,153,0.15);border-color:rgba(236,72,153,0.5);color:#fff">
+        🌎 ADVANCED ENGLISH FLUENCY REQUIRED
+      </div>
+    </div>
+    <h1>
+      Junior Strategist <span class="accent">en LeadGenJay.</span>
+    </h1>
+    <p class="hero-sub">
+      Un aprendizaje pago al lado del equipo High Ticket de LGJ. Aprende cold email, IA aplicada y growth ops desde adentro,
+      con clientes reales en Estados Unidos desde el día uno.
+    </p>
+    <div class="hero-ctas">
+      <a href="#aplicar" class="btn btn-primary">Aplicar a la vacante →</a>
+      <a href="#rol" class="btn btn-ghost">Ver detalles del rol</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num" data-count="2000">$0</div>
+        <div class="stat-label">Salario inicial / mes USD</div>
+      </div>
+      <div>
+        <div class="stat-num" data-count="11000">$0</div>
+        <div class="stat-label">Techo como Strategist / mes USD</div>
+      </div>
+      <div>
+        <div class="stat-num">42</div>
+        <div class="stat-label">Personas en el equipo global</div>
+      </div>
+      <div>
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Entrenamiento incluido</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT LGJ -->
+<section id="empresa">
+  <div class="container">
+    <div class="section-tag reveal">// Quiénes somos</div>
+    <h2 class="reveal">Conseguimos reuniones calificadas para empresas B2B en Estados Unidos.</h2>
+    <div class="lgj-grid reveal">
+      <div class="lgj-text">
+        <p>
+          <strong>LeadGenJay</strong> es una agencia de generación de leads B2B. Nuestro trabajo es conseguir reuniones
+          calificadas con clientes potenciales para las empresas que nos contratan, usando cold email y automatización
+          con inteligencia artificial.
+        </p>
+        <p>
+          Trabajamos principalmente con <strong>coaches, agencias, empresas de software y consultores</strong> que
+          quieren escalar sus ventas sin gastar fortunas en publicidad. Entendemos su cliente ideal, configuramos toda
+          la infraestructura técnica (dominios, cuentas de email), escribimos secuencias personalizadas que generan respuestas,
+          buscamos los contactos correctos en bases de datos y lanzamos campañas enviando miles de emails cada mes.
+        </p>
+        <p>
+          Nosotros hacemos todo el trabajo pesado, el cliente recibe leads interesados directo en su bandeja de entrada,
+          listos para agendar llamadas y cerrar ventas.
+        </p>
+        <div class="lgj-stack">
+          <div class="stack-chip">Instantly</div>
+          <div class="stack-chip">Email Bison</div>
+          <div class="stack-chip">Apollo</div>
+          <div class="stack-chip">Clay</div>
+          <div class="stack-chip">AI Ark</div>
+          <div class="stack-chip">Apify</div>
+          <div class="stack-chip">Notion</div>
+          <div class="stack-chip">Slack</div>
+          <div class="stack-chip">ChatGPT</div>
+          <div class="stack-chip">Claude</div>
+          <div class="stack-chip">Claude Code</div>
+        </div>
+      </div>
+      <div class="lgj-visual">
+        <div class="lgj-mini-stat">
+          <div class="num">5–14</div>
+          <div class="lbl">Clientes nuevos por mes</div>
+        </div>
+        <div class="lgj-mini-stat">
+          <div class="num">42</div>
+          <div class="lbl">Personas en 7+ países</div>
+        </div>
+        <div class="lgj-mini-stat">
+          <div class="num">100%</div>
+          <div class="lbl">Done for you · High Ticket</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section id="jay" class="founder">
+  <div class="container">
+    <div class="section-tag reveal">// El fundador</div>
+    <h2 class="reveal">Conoce a Jay Feldman.</h2>
+    <p class="section-sub reveal">
+      Más conocido como <strong style="color:var(--text)">Lead Gen Jay</strong>, Jay es el fundador y CEO de LGJ. Antes de crear la agencia, fundó
+      Otter PR, una agencia de relaciones públicas con más de 60 empleados, rankeada #1 en USA y dos veces en el Inc 5000
+      como una de las empresas de más rápido crecimiento.
+    </p>
+    <div class="founder-grid reveal">
+      <div class="founder-card">
+        <img class="founder-photo" src="jay-headshot.jpg" alt="Jay Feldman" />
+        <div class="founder-card-content">
+          <div class="founder-name">Jay Feldman</div>
+          <div class="founder-title">Founder & CEO · LeadGenJay</div>
+          <div class="founder-press">
+            <div class="press-chip">Forbes</div>
+            <div class="press-chip">Inc Magazine</div>
+            <div class="press-chip">Business Insider</div>
+          </div>
+        </div>
+      </div>
+      <div class="founder-text">
+        <p>
+          Con la experiencia de haber construido y escalado Otter PR, Jay creó <strong>Lead Gen Jay</strong> para ayudar
+          a empresas B2B a conseguir clientes usando cold email y automatización con inteligencia artificial.
+        </p>
+        <p>
+          Tiene el <strong>canal de YouTube más grande sobre cold email y lead generation</strong>, y ha sido mencionado
+          en Forbes, Inc Magazine y Business Insider. Sigue activo en estrategia, copy y deliverability, y entrena al
+          equipo personalmente.
+        </p>
+        <div class="founder-quote">
+          "Cold email no es spam, es la forma más directa de hablarle a la persona correcta en el momento correcto.
+          Lo que nos toca es hacerlo tan bien que se sienta como una recomendación."
+        </div>
+        <p>
+          Si eres curioso, hambriento y entrenable, vas a aprender de alguien que vive el oficio todos los días y construyó
+          el mayor recurso público de educación en cold email del mundo.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM COLOMBIA -->
+<section id="equipo" class="team-colombia">
+  <div class="container">
+    <div class="section-tag reveal">// El equipo</div>
+    <div class="team-flag reveal">🇨🇴</div>
+    <h2 class="reveal">El equipo de Colombia.</h2>
+    <p class="section-sub reveal">
+      El equipo global son <strong style="color:var(--text)">42 personas</strong> distribuidas entre Estados Unidos, Colombia, Reino Unido,
+      Filipinas, Bangladesh y más. En Colombia tenemos un equipo fuerte, unido y colaborativo. Estos son con los
+      que vas a trabajar día a día.
+    </p>
+    <div class="team-grid reveal">
+      <div class="team-card lead">
+        <div class="team-avatar">JG</div>
+        <div class="team-name">Jonathan Garcés</div>
+        <div class="team-role">Mano derecha de Jay · Líder High Ticket</div>
+        <p class="team-desc">
+          Lidera el equipo de High Ticket (el servicio premium "done for you" de LGJ), asiste con clientes y mentoriza
+          a estrategas y CSMs. Mente brillante con dominio del lado estratégico y técnico del negocio. Tu mentor más cercano.
+        </p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">PG</div>
+        <div class="team-name">Pablo Gaviria</div>
+        <div class="team-role">Strategist</div>
+        <p class="team-desc">
+          Estratega del equipo High Ticket. Maneja clientes activos, optimiza campañas y mentoriza a los juniors en
+          frameworks de cold email y deliverability.
+        </p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">JM</div>
+        <div class="team-name">Juliana Muñoz</div>
+        <div class="team-role">Senior Client Success Manager</div>
+        <p class="team-desc">
+          Lidera el área de CSMs en Colombia. Tu punto de contacto inicial para esta vacante y parte del equipo que
+          trabaja codo a codo con los estrategas todos los días.
+        </p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">SR</div>
+        <div class="team-name">Shara Ramírez</div>
+        <div class="team-role">Client Success Manager</div>
+        <p class="team-desc">
+          Onboarding de clientes nuevos, soporte y apoyo a estrategas. Garantiza que el flujo cliente↔equipo sea impecable.
+        </p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">MG</div>
+        <div class="team-name">Mariana Gallego</div>
+        <div class="team-role">Billing Assistant</div>
+        <p class="team-desc">
+          Asegura que todo lo administrativo y financiero del workspace fluya sin fricción para clientes y equipo interno.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROLE GLANCE -->
+<section id="rol">
+  <div class="container">
+    <div class="section-tag reveal">// El rol</div>
+    <h2 class="reveal">Junior Strategist, a vista rápida.</h2>
+    <p class="section-sub reveal">
+      Trabajas directamente con el estratega como su asistente y como estratega en formación. Dos pilares,
+      <strong style="color:var(--text)">apoyo al éxito del cliente</strong> y <strong style="color:var(--text)">dueño del list building en onboarding</strong>.
+      Bajo el liderazgo directo de Jonathan Garcés y el equipo High Ticket.
+    </p>
+
+    <div class="glance-grid reveal">
+      <div class="glance-card">
+        <div class="glance-icon">$</div>
+        <div class="glance-label">Salario inicial</div>
+        <div class="glance-value">$1,800 a $2,000 USD / mes</div>
+      </div>
+      <div class="glance-card">
+        <div class="glance-icon">⚡</div>
+        <div class="glance-label">Bonos</div>
+        <div class="glance-value">Por performance</div>
+      </div>
+      <div class="glance-card">
+        <div class="glance-icon">◷</div>
+        <div class="glance-label">Zona horaria</div>
+        <div class="glance-value">U.S. Eastern Time</div>
+      </div>
+      <div class="glance-card">
+        <div class="glance-icon">⌂</div>
+        <div class="glance-label">Modalidad</div>
+        <div class="glance-value">Híbrida, Colombia / remoto</div>
+      </div>
+      <div class="glance-card highlight">
+        <div class="glance-icon">EN</div>
+        <div class="glance-label">Inglés · Requisito</div>
+        <div class="glance-value">Advanced Fluency</div>
+        <div class="glance-extra">Oral y escrito · sin excepciones</div>
+      </div>
+      <div class="glance-card">
+        <div class="glance-icon">★</div>
+        <div class="glance-label">Experiencia</div>
+        <div class="glance-value">Junior, entrenamiento full</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:1.5rem;font-weight:700;margin-bottom:2rem;letter-spacing:-0.02em" class="reveal">
+      Las tres responsabilidades centrales
+    </h3>
+
+    <div class="pillars reveal">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <div class="pillar-title">List Building</div>
+        <p class="pillar-desc">
+          El pilar más importante. Hoy construimos las listas al final del onboarding. Al moverlas en paralelo con
+          copywriting, comprimimos el time-to-launch de semanas a días.
+        </p>
+        <ul class="pillar-list">
+          <li>Recibir ICP del Senior Strategist</li>
+          <li>Pulir listas en Apollo, AI Ark, Apify o scrapes custom</li>
+          <li>Coordinar con el operador de scraping</li>
+          <li>Validar calidad antes de entregar el CSV final</li>
+          <li>Aprender los scrapers internos hechos con Claude Code</li>
+        </ul>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <div class="pillar-title">Client Success</div>
+        <p class="pillar-desc">
+          Punto de contacto visible junto al Senior. Lo profesional y lo humano, ser claro, responsivo y mantener
+          las cosas en movimiento.
+        </p>
+        <ul class="pillar-list">
+          <li>Zoom calls con clientes en Estados Unidos</li>
+          <li>Responder emails diarios con tono claro y amable</li>
+          <li>Manejar llamadas eventuales por teléfono</li>
+          <li>Mantener docs internos y de cliente actualizados en Notion</li>
+        </ul>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <div class="pillar-title">Cold Email Strategy</div>
+        <p class="pillar-desc">
+          Esto crece con el tiempo. No esperamos estrategia el día uno, esperamos curiosidad y disposición a entrenar.
+          Eventualmente armarás secuencias end-to-end.
+        </p>
+        <ul class="pillar-list">
+          <li>Aprender nuestros frameworks de cold email</li>
+          <li>Armar tus propias secuencias progresivamente</li>
+          <li>Tomar cuentas más viejas para desbloquear con ojos frescos</li>
+          <li>Crecer hacia un rol de Strategist completo</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU'LL LEARN -->
+<section>
+  <div class="container">
+    <div class="section-tag reveal">// Lo que vas a aprender</div>
+    <h2 class="reveal">Un aprendizaje pago en cold email moderno y AI growth ops.</h2>
+    <p class="section-sub reveal">
+      Invertimos pesado en entrenamiento. Espera exposición práctica directa a todo lo que sigue. Jonathan nos enseña
+      a estar siempre actualizados y adoptando nuevas tecnologías.
+    </p>
+    <div class="learn-grid reveal">
+      <div class="learn-item">
+        <div class="learn-title"><span class="learn-dot"></span>Cold email strategy</div>
+        <div class="learn-desc">Copywriting, sequencing, deliverability, offer positioning.</div>
+      </div>
+      <div class="learn-item">
+        <div class="learn-title"><span class="learn-dot"></span>AI tooling profundo</div>
+        <div class="learn-desc">Claude Code, scrapers custom, copy IA que supera baselines humanos.</div>
+      </div>
+      <div class="learn-item">
+        <div class="learn-title"><span class="learn-dot"></span>Lead data work</div>
+        <div class="learn-desc">Apollo, Clay, AI Ark, Apify, pipelines de scrape, QA de listas.</div>
+      </div>
+      <div class="learn-item">
+        <div class="learn-title"><span class="learn-dot"></span>Infraestructura técnica</div>
+        <div class="learn-desc">Dominios, cuentas de email, deliverability, self-hosting.</div>
+      </div>
+      <div class="learn-item">
+        <div class="learn-title"><span class="learn-dot"></span>Client communication</div>
+        <div class="learn-desc">Account management aprendido directo de los seniors y CSMs.</div>
+      </div>
+      <div class="learn-item">
+        <div class="learn-title"><span class="learn-dot"></span>Marketing automation</div>
+        <div class="learn-desc">Automatizaciones, workflows e IA aplicada a outbound a escala.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIT -->
+<section class="fit">
+  <div class="container">
+    <div class="section-tag reveal">// Honestidad</div>
+    <h2 class="reveal">¿Es este rol para ti?</h2>
+    <div class="fit-grid reveal">
+      <div class="fit-col yes">
+        <h3>Eres un buen fit si...</h3>
+        <ul>
+          <li>Te emociona aprender 5 herramientas nuevas en un mes antes que hacer la misma tarea 5 veces</li>
+          <li>Ya usas IA en tu día a día y quieres ir más profundo (Claude Code, automatizaciones, scrapers)</li>
+          <li>Tu inglés es avanzado y te sientes cómodo en Zoom y llamadas con clientes de Estados Unidos</li>
+          <li>Eres detallista, sabes que la calidad de la lista define el resultado</li>
+          <li>Recibes feedback bien y aprendes rápido</li>
+          <li>Vives en LATAM, idealmente Medellín o cerca</li>
+        </ul>
+      </div>
+      <div class="fit-col no">
+        <h3>No es para ti si...</h3>
+        <ul>
+          <li>Buscas un rol estático con tareas repetitivas día tras día</li>
+          <li>La IA te incomoda o prefieres evitarla</li>
+          <li>El inglés conversacional no está sólido todavía</li>
+          <li>No te emociona aprender de software, scraping o automatización</li>
+          <li>Prefieres no estar de cara al cliente</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEDELLÍN OFFICE -->
+<section class="office">
+  <div class="container">
+    <div class="section-tag reveal">// Oficina</div>
+    <h2 class="reveal">Medellín, Colombia.</h2>
+    <p class="section-sub reveal">
+      Tenemos oficina física en Medellín. Si vives en la ciudad o cerca, estás invitado a venir todos los días. El equipo
+      trabaja de lunes a viernes de 9 AM a 5 PM con horarios flexibles. Estar en la sala con el equipo es por lejos la
+      forma más rápida de crecer en este rol.
+    </p>
+    <div class="office-badge reveal">
+      <div class="office-pin"></div>
+      Equipo presencial · Lun a Vie · 9 AM a 5 PM
+    </div>
+  </div>
+</section>
+
+<!-- APPLY -->
+<section id="aplicar" class="apply">
+  <div class="apply-inner">
+    <div class="section-tag reveal">// Aplicar</div>
+    <h2 class="reveal">¿Te interesa? Muéstranos por qué.</h2>
+
+    <div class="english-alert reveal">
+      <div class="english-alert-icon">EN</div>
+      <div class="english-alert-content">
+        <div class="english-alert-title">Advanced English Fluency Required</div>
+        <div class="english-alert-text">
+          Este es un <strong>requisito no negociable</strong>. Vas a estar en Zoom y llamadas con clientes de Estados Unidos
+          todos los días, oral y escrito. Si tu inglés conversacional no está sólido todavía, este no es el rol.
+        </div>
+      </div>
+    </div>
+
+    <p class="reveal">
+      Mándanos un email contándonos quién eres, qué herramientas de IA usas hoy y qué te emociona del rol. No buscamos
+      formato perfecto, buscamos curiosidad real.
+    </p>
+    <a href="mailto:juliana@leadgenjay.com?subject=Aplicación%20Junior%20Strategist" class="apply-btn reveal">
+      Aplicar al rol →
+    </a>
+    <div class="apply-meta reveal">juliana@leadgenjay.com · respondemos en 48h</div>
+  </div>
+</section>
+
+<footer>
+  <div class="logo">
+    <img src="logo.png" alt="LeadGenJay" />
+  </div>
+  <div>Cold email, IA y growth ops · Colombia 🇨🇴 · Estados Unidos 🇺🇸 · Equipo 100% global</div>
+  <div style="margin-top:1rem;font-size:0.75rem">© 2026 LeadGenJay. Todos los derechos reservados.</div>
+</footer>
+
+<script>
+  // Progress bar
+  const progress = document.getElementById('progress');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+    progress.style.width = pct + '%';
+  });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Animated stat counters
+  function animateCount(el, target, duration = 1500) {
+    const start = performance.now();
+    const prefix = '$';
+    function tick(now) {
+      const t = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      const val = Math.floor(target * eased);
+      el.textContent = prefix + val.toLocaleString();
+      if (t < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const target = parseInt(e.target.dataset.count, 10);
+        animateCount(e.target, target);
+        statObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-count]').forEach(el => statObserver.observe(el));
+
+  // Path stops interactive
+  const stops = document.querySelectorAll('.path-stop');
+  stops.forEach(stop => {
+    stop.addEventListener('click', () => {
+      stops.forEach(s => s.classList.remove('active'));
+      stop.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
