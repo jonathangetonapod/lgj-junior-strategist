@@ -87,6 +87,11 @@
     width: auto;
     display: block;
   }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
   .nav-links {
     display: flex;
     gap: 2rem;
@@ -628,6 +633,120 @@
     color: var(--accent);
   }
 
+  /* Skills */
+  .skills {
+    background: var(--bg-elev);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+  @media (max-width: 800px) { .skills-grid { grid-template-columns: 1fr; } }
+  .skills-col {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+  }
+  .skills-col.priority-high {
+    border-color: rgba(236, 72, 153, 0.4);
+    background: linear-gradient(180deg, rgba(236, 72, 153, 0.06), var(--bg-card));
+  }
+  .skills-col-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .skills-col-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .skills-priority-chip {
+    padding: 0.3rem 0.7rem;
+    border-radius: 100px;
+    font-size: 0.7rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .skills-priority-chip.high {
+    background: var(--accent);
+    color: white;
+  }
+  .skills-priority-chip.med {
+    background: var(--bg-elev);
+    color: var(--text-dim);
+    border: 1px solid var(--border-bright);
+  }
+  .skills-list {
+    list-style: none;
+    padding: 0;
+  }
+  .skills-list li {
+    padding: 0.85rem 0;
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+  .skills-list li:last-child { border-bottom: none; }
+  .skills-list li::before {
+    content: '→';
+    color: var(--accent);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .skills-list li strong { color: var(--text); font-weight: 600; }
+  .skills-tech-callout {
+    margin-top: 2rem;
+    background: var(--bg-card);
+    border: 1px solid rgba(236, 72, 153, 0.35);
+    border-radius: 14px;
+    padding: 1.5rem 1.75rem;
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+  .skills-tech-icon {
+    flex-shrink: 0;
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    background: var(--accent);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+  }
+  .skills-tech-title {
+    color: var(--accent-bright);
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 0.35rem;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .skills-tech-text {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+  .skills-tech-text strong { color: var(--text); font-weight: 600; }
+
   /* Learn list */
   .learn-grid {
     display: grid;
@@ -920,12 +1039,16 @@
     <div class="logo">
       <img src="logo.png" alt="LeadGenJay" />
     </div>
-    <ul class="nav-links">
-      <li><a href="#empresa">Empresa</a></li>
-      <li><a href="#jay">Jay</a></li>
-      <li><a href="#equipo">Equipo</a></li>
-      <li><a href="#rol">El rol</a></li>
-    </ul>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#empresa">Empresa</a></li>
+        <li><a href="#jay">Jay</a></li>
+        <li><a href="#equipo">Equipo</a></li>
+        <li><a href="#rol">El rol</a></li>
+        <li><a href="#habilidades">Habilidades</a></li>
+      </ul>
+      <a href="https://forms.gle/jTkdq4Bk8PdVNCfM9" target="_blank" rel="noopener" class="nav-cta">Aplicar ahora →</a>
+    </div>
   </div>
 </nav>
 
@@ -951,6 +1074,7 @@
       High Ticket, apoyas a los clientes y eres dueño del list building en cada onboarding.
     </p>
     <div class="hero-ctas">
+      <a href="https://forms.gle/jTkdq4Bk8PdVNCfM9" target="_blank" rel="noopener" class="btn btn-primary">Aplicar ahora →</a>
       <a href="#rol" class="btn btn-ghost">Ver detalles del rol</a>
     </div>
     <div class="hero-stats">
@@ -1241,6 +1365,84 @@
 </section>
 
 
+<!-- SKILLS -->
+<section class="skills" id="habilidades">
+  <div class="container">
+    <div class="section-tag reveal">// Habilidades</div>
+    <h2 class="reveal">Las habilidades que estamos buscando.</h2>
+    <p class="section-sub reveal">
+      Buscamos a alguien con buenas habilidades blandas para clientes, criterio claro y un perfil técnico, cómodo con
+      software, automatización e IA. Lo de cold email te lo enseñamos.
+    </p>
+
+    <div class="skills-tech-callout reveal">
+      <div class="skills-tech-icon">{ }</div>
+      <div>
+        <div class="skills-tech-title">Perfil técnico</div>
+        <div class="skills-tech-text">
+          Buscamos a alguien <strong>cómodo con la tecnología</strong>, que use IA en su día a día, no le tema a aprender
+          herramientas nuevas (Apollo, Clay, Apify, Claude Code, scrapers internos) y entienda que el oficio moderno de
+          cold email es 50% estrategia y 50% software.
+        </div>
+      </div>
+    </div>
+
+    <div class="skills-grid reveal" style="margin-top:2.5rem">
+      <div class="skills-col priority-high">
+        <div class="skills-col-header">
+          <div class="skills-col-title">Prioridad alta</div>
+          <div class="skills-priority-chip high">Must have</div>
+        </div>
+        <ul class="skills-list">
+          <li>
+            <strong>Defender argumentos con claridad</strong> en el contexto de la relación con el cliente, explicando
+            el razonamiento detrás de cada decisión.
+          </li>
+          <li>
+            <strong>Experiencia en relacionamiento con clientes</strong> y respuesta oportuna a sus requerimientos.
+          </li>
+          <li>
+            <strong>Manejo de crisis</strong>: capacidad para resolver objeciones, comprender las necesidades del cliente
+            y solucionar problemas de manera efectiva.
+          </li>
+          <li>
+            <strong>Conocimientos en herramientas ofimáticas</strong> (Google Workspace, Notion, Slack, hojas de cálculo).
+          </li>
+          <li>
+            <strong>Disposición y capacidad para trabajar en equipo</strong>, con un Director, un Senior Strategist y un
+            equipo de CSMs en paralelo.
+          </li>
+        </ul>
+      </div>
+
+      <div class="skills-col">
+        <div class="skills-col-header">
+          <div class="skills-col-title">Prioridad media</div>
+          <div class="skills-priority-chip med">Nice to have</div>
+        </div>
+        <ul class="skills-list">
+          <li>
+            <strong>Identidad corporativa</strong>: alineación con la cultura y la forma de operar del equipo.
+          </li>
+          <li>
+            <strong>Responsable y con atención al detalle</strong>, sobre todo en list building y comunicación al cliente.
+          </li>
+          <li>
+            <strong>Disposición al aprendizaje</strong>, autonomía y autodidactismo. Te damos los recursos, tú avanzas.
+          </li>
+          <li>
+            <strong>Comunicación asertiva</strong>, directa pero respetuosa, en español y en inglés.
+          </li>
+          <li>
+            <strong>Capacidad de liderazgo</strong>: delegar cuando se requiera, exigir cumplimiento de los tiempos
+            acordados y solicitar ajustes a los entregables cuando sea necesario.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- WHAT YOU'LL LEARN -->
 <section>
   <div class="container">
@@ -1369,6 +1571,22 @@
       <div class="office-pin"></div>
       Equipo presencial · Lun a Vie · 9 AM a 5 PM
     </div>
+  </div>
+</section>
+
+<!-- APPLY -->
+<section class="apply" id="aplicar">
+  <div class="apply-inner">
+    <div class="section-tag reveal" style="text-align:center">// Aplicar</div>
+    <h2 class="reveal" style="margin-left:auto;margin-right:auto;text-align:center">¿Listo para aplicar?</h2>
+    <p class="reveal">
+      Una vacante, primera ronda en mayo. Si lo que leíste te prendió, déjanos saber quién eres y por qué encajas.
+      Toma menos de 10 minutos.
+    </p>
+    <a href="https://forms.gle/jTkdq4Bk8PdVNCfM9" target="_blank" rel="noopener" class="apply-btn reveal">
+      Aplicar ahora →
+    </a>
+    <div class="apply-meta reveal">Responde al formulario · revisamos cada aplicación</div>
   </div>
 </section>
 
