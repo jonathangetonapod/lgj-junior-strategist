@@ -4,19 +4,22 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Junior Strategist · LeadGenJay</title>
+<link rel="canonical" href="https://jonathangetonapod.github.io/lgj-junior-strategist/" />
 <meta name="description" content="Aprendizaje pago al lado del equipo High Ticket de LeadGenJay. Cold email, IA aplicada y growth ops con clientes reales en Estados Unidos. Oficina en El Poblado, Medellín. Inglés avanzado requerido." />
 <meta property="og:type" content="website" />
+<meta property="og:url" content="https://jonathangetonapod.github.io/lgj-junior-strategist/" />
 <meta property="og:title" content="Junior Strategist · LeadGenJay" />
 <meta property="og:description" content="Mano derecha del Director de Client Success en High Ticket. Aprende cold email, IA aplicada y growth ops con clientes reales en Estados Unidos. Oficina en El Poblado, Medellín. Salario $2,000 USD/mes." />
-<meta property="og:image" content="logo.png" />
+<meta property="og:image" content="https://jonathangetonapod.github.io/lgj-junior-strategist/logo.png" />
 <meta property="og:locale" content="es_LA" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Junior Strategist · LeadGenJay" />
 <meta name="twitter:description" content="Aprendizaje pago en cold email, IA y growth ops. Oficina en Medellín. Inglés avanzado requerido." />
-<meta name="twitter:image" content="logo.png" />
+<meta name="twitter:image" content="https://jonathangetonapod.github.io/lgj-junior-strategist/logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
 <style>
   :root {
     --bg: #0a0a0a;
@@ -37,6 +40,7 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   html { scroll-behavior: smooth; }
+  section[id] { scroll-margin-top: 6rem; }
 
   body {
     font-family: 'Inter', -apple-system, sans-serif;
@@ -119,8 +123,15 @@
     transform: translateY(-1px);
     box-shadow: 0 8px 24px var(--accent-glow);
   }
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--accent-bright);
+    outline-offset: 3px;
+    border-radius: 8px;
+  }
   @media (max-width: 720px) {
     .nav-links { display: none; }
+    .nav-right { gap: 0; }
   }
 
   /* Hero */
@@ -325,6 +336,30 @@
     font-size: 0.8rem;
     color: var(--text-dim);
     font-family: 'JetBrains Mono', monospace;
+  }
+  .proof-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+  }
+  .proof-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid rgba(236, 72, 153, 0.28);
+    background: rgba(236, 72, 153, 0.08);
+    color: var(--accent-bright);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .proof-link:hover {
+    border-color: var(--accent);
+    transform: translateY(-1px);
   }
   .lgj-visual {
     aspect-ratio: 1;
@@ -851,69 +886,6 @@
     animation: pulse 2s infinite;
   }
 
-  /* Salary path */
-  .path {
-    background: var(--bg-elev);
-    border-top: 1px solid var(--border);
-  }
-  .path-track {
-    position: relative;
-    margin-top: 4rem;
-    padding: 2rem 0;
-  }
-  .path-line {
-    position: absolute;
-    top: 50%;
-    left: 5%; right: 5%;
-    height: 2px;
-    background: linear-gradient(90deg, var(--border-bright), var(--accent));
-    transform: translateY(-50%);
-  }
-  .path-stops {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    position: relative;
-    gap: 1rem;
-  }
-  .path-stop {
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.2s;
-  }
-  .path-stop:hover { transform: translateY(-4px); }
-  .path-dot {
-    width: 20px; height: 20px;
-    border-radius: 50%;
-    background: var(--bg);
-    border: 2px solid var(--border-bright);
-    margin: 0 auto 1.5rem;
-    transition: all 0.2s;
-    position: relative;
-    z-index: 1;
-  }
-  .path-stop:hover .path-dot,
-  .path-stop.active .path-dot {
-    background: var(--accent);
-    border-color: var(--accent);
-    box-shadow: 0 0 20px var(--accent-glow);
-  }
-  .path-role {
-    font-weight: 700;
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-  }
-  .path-salary {
-    color: var(--accent-bright);
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 600;
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-  }
-  .path-note {
-    color: var(--text-muted);
-    font-size: 0.85rem;
-  }
-
   /* English requirement banner */
   .english-alert {
     max-width: 720px;
@@ -1019,14 +991,22 @@
   footer .logo { justify-content: center; margin-bottom: 1rem; }
 
   /* Reveal animation */
-  .reveal {
+  .js .reveal {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.8s ease, transform 0.8s ease;
   }
-  .reveal.in {
+  .js .reveal.in {
     opacity: 1;
     transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 </style>
 </head>
@@ -1037,7 +1017,7 @@
 <nav>
   <div class="nav-inner">
     <div class="logo">
-      <img src="logo.png" alt="LeadGenJay" />
+      <img src="logo.png" alt="LeadGenJay" width="600" height="200" />
     </div>
     <div class="nav-right">
       <ul class="nav-links">
@@ -1069,9 +1049,9 @@
       Junior Strategist <span class="accent">en LeadGenJay.</span>
     </h1>
     <p class="hero-sub">
-      Un asiento de primera fila en una de las agencias de lead generation con mejor desempeño en Estados Unidos,
-      aprendiendo cold email, IA aplicada y growth ops en vivo. Como mano derecha del Director de Client Success en
-      High Ticket, apoyas a los clientes y eres dueño del list building en cada onboarding.
+      Un asiento de primera fila en una de las agencias de lead generation con mejor desempeño en Estados Unidos.
+      Como mano derecha del Director de Client Success en High Ticket, apoyas a clientes reales, eres dueño del list
+      building en cada onboarding y aprendes el stack técnico dentro del rol.
     </p>
     <div class="hero-ctas">
       <a href="https://forms.gle/jTkdq4Bk8PdVNCfM9" target="_blank" rel="noopener" class="btn btn-primary">Aplicar ahora →</a>
@@ -1083,12 +1063,16 @@
         <div class="stat-label">Salario inicial / mes USD</div>
       </div>
       <div>
-        <div class="stat-num">42+</div>
-        <div class="stat-label">Personas en el equipo global, y creciendo</div>
+        <div class="stat-num">EN+</div>
+        <div class="stat-label">Inglés avanzado obligatorio</div>
       </div>
       <div>
-        <div class="stat-num">1</div>
-        <div class="stat-label">Vacante abierta · primera ronda en mayo</div>
+        <div class="stat-num">ET</div>
+        <div class="stat-label">Operación diaria en horario U.S. Eastern</div>
+      </div>
+      <div>
+        <div class="stat-num">Híbrido</div>
+        <div class="stat-label">LATAM remoto · base en WeWork Medellín</div>
       </div>
     </div>
   </div>
@@ -1122,6 +1106,11 @@
           <strong style="color:var(--text)">G7 Logistics Networks</strong> con 79 oportunidades calificadas, y
           <strong style="color:var(--text)">Qazzoo & USHUD</strong> con $689K+ en pipeline.
         </p>
+        <div class="proof-links">
+          <a href="https://leadgenjay.com/" target="_blank" rel="noopener" class="proof-link">leadgenjay.com</a>
+          <a href="https://leadgenjay.com/results" target="_blank" rel="noopener" class="proof-link">Casos reales</a>
+          <a href="https://www.trustpilot.com/review/leadgenjay.com" target="_blank" rel="noopener" class="proof-link">Trustpilot 4.9★</a>
+        </div>
         <div class="lgj-stack">
           <div class="stack-chip">Instantly</div>
           <div class="stack-chip">Email Bison</div>
@@ -1166,7 +1155,7 @@
     </p>
     <div class="founder-grid reveal">
       <div class="founder-card">
-        <img class="founder-photo" src="jay-headshot.jpg" alt="Jay Feldman" />
+        <img class="founder-photo" src="jay-headshot.jpg" alt="Jay Feldman" width="900" height="900" loading="lazy" decoding="async" />
         <div class="founder-card-content">
           <div class="founder-name">Jay Feldman</div>
           <div class="founder-title">Founder & CEO · LeadGenJay</div>
@@ -1274,7 +1263,8 @@
       trabajando directamente bajo él como su asistente y como estratega en formación. Dos pilares,
       <strong style="color:var(--text)">apoyo al éxito del cliente</strong> y
       <strong style="color:var(--text)">dueño del list building en onboarding</strong>. Reporte directo, mentoría
-      directa, en el centro del equipo High Ticket.
+      directa, en el centro del equipo High Ticket. Lo técnico y lo estratégico se enseñan; el project management,
+      el ownership y el trato con clientes tienen que venir fuertes desde el día uno.
     </p>
 
     <div class="glance-grid reveal">
@@ -1297,7 +1287,8 @@
       <div class="glance-card">
         <div class="glance-icon">⌂</div>
         <div class="glance-label">Modalidad</div>
-        <div class="glance-value">Híbrida, Colombia / remoto</div>
+        <div class="glance-value">Híbrida, LATAM / remoto</div>
+        <div class="glance-extra">Base en WeWork El Poblado, Medellín</div>
       </div>
       <div class="glance-card highlight">
         <div class="glance-icon">EN</div>
@@ -1306,9 +1297,10 @@
         <div class="glance-extra">Oral y escrito · sin excepciones</div>
       </div>
       <div class="glance-card">
-        <div class="glance-icon">★</div>
-        <div class="glance-label">Experiencia</div>
-        <div class="glance-value">Junior, entrenamiento full</div>
+        <div class="glance-icon">PM</div>
+        <div class="glance-label">Fortaleza clave</div>
+        <div class="glance-value">Excelente project management</div>
+        <div class="glance-extra">Lo técnico se enseña dentro del rol</div>
       </div>
     </div>
 
@@ -1364,6 +1356,32 @@
   </div>
 </section>
 
+<!-- FIRST 90 DAYS -->
+<section>
+  <div class="container">
+    <div class="section-tag reveal">// Primeros 90 días</div>
+    <h2 class="reveal">Qué se espera de ti al arrancar.</h2>
+    <p class="section-sub reveal">
+      No te soltamos solo. Te entrenamos fuerte en cold email y en el stack técnico, mientras construyes ritmo
+      operativo, project management y criterio con cuentas reales.
+    </p>
+    <div class="learn-grid reveal">
+      <div class="learn-item">
+        <div class="learn-title"><span class="learn-dot"></span>Días 1-30</div>
+        <div class="learn-desc">Onboarding al stack, shadow en calls, QA de listas, documentación en Notion y primeros entregables con supervisión cercana.</div>
+      </div>
+      <div class="learn-item">
+        <div class="learn-title"><span class="learn-dot"></span>Días 31-60</div>
+        <div class="learn-desc">Más ownership en onboarding, follow-up con clientes, coordinación con Strategists y operadores, y mejor control de prioridades y deadlines.</div>
+      </div>
+      <div class="learn-item">
+        <div class="learn-title"><span class="learn-dot"></span>Días 61-90</div>
+        <div class="learn-desc">Manejo más autónomo de workstreams, list building más complejo, mejor criterio en comunicación al cliente y base sólida para crecer hacia Strategist.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!-- SKILLS -->
 <section class="skills" id="habilidades">
@@ -1371,18 +1389,19 @@
     <div class="section-tag reveal">// Habilidades</div>
     <h2 class="reveal">Las habilidades que estamos buscando.</h2>
     <p class="section-sub reveal">
-      Buscamos a alguien con buenas habilidades blandas para clientes, criterio claro y un perfil técnico, cómodo con
-      software, automatización e IA. Lo de cold email te lo enseñamos.
+      No buscamos que llegues sabiendo cold email, deliverability ni todo el stack técnico. Eso te lo enseñamos.
+      Lo que sí necesitamos desde el día uno es excelente project management, comunicación clara con clientes y
+      criterio para empujar trabajo de calidad.
     </p>
 
     <div class="skills-tech-callout reveal">
-      <div class="skills-tech-icon">{ }</div>
+      <div class="skills-tech-icon">PM</div>
       <div>
-        <div class="skills-tech-title">Perfil técnico</div>
+        <div class="skills-tech-title">Lo técnico se aprende aquí</div>
         <div class="skills-tech-text">
-          Buscamos a alguien <strong>cómodo con la tecnología</strong>, que use IA en su día a día, no le tema a aprender
-          herramientas nuevas (Apollo, Clay, Apify, Claude Code, scrapers internos) y entienda que el oficio moderno de
-          cold email es 50% estrategia y 50% software.
+          Apollo, Clay, AI Ark, Apify, Claude Code y nuestros workflows internos te los enseñamos. Lo que sí
+          necesitamos desde el día uno es <strong>comodidad con software</strong>, hambre por aprender y excelente
+          project management para coordinar personas, prioridades y deadlines.
         </div>
       </div>
     </div>
@@ -1390,52 +1409,57 @@
     <div class="skills-grid reveal" style="margin-top:2.5rem">
       <div class="skills-col priority-high">
         <div class="skills-col-header">
-          <div class="skills-col-title">Prioridad alta</div>
-          <div class="skills-priority-chip high">Must have</div>
+          <div class="skills-col-title">Necesario desde el día uno</div>
+          <div class="skills-priority-chip high">Clave</div>
         </div>
         <ul class="skills-list">
           <li>
-            <strong>Defender argumentos con claridad</strong> en el contexto de la relación con el cliente, explicando
-            el razonamiento detrás de cada decisión.
+            <strong>Excelente project management</strong>: sabes mover varios frentes a la vez, hacer follow-up,
+            priorizar y empujar entregables sin perder detalle.
           </li>
           <li>
-            <strong>Experiencia en relacionamiento con clientes</strong> y respuesta oportuna a sus requerimientos.
+            <strong>Comunicación impecable con clientes</strong>: respondes con claridad, contexto y buen juicio en
+            email, Slack y calls.
           </li>
           <li>
-            <strong>Manejo de crisis</strong>: capacidad para resolver objeciones, comprender las necesidades del cliente
-            y solucionar problemas de manera efectiva.
+            <strong>Defender decisiones con razonamiento claro</strong>: puedes explicar por qué se tomó una dirección,
+            qué cambió y qué sigue.
           </li>
           <li>
-            <strong>Conocimientos en herramientas ofimáticas</strong> (Google Workspace, Notion, Slack, hojas de cálculo).
+            <strong>Manejo de presión y resolución de problemas</strong>: destrabas objeciones, ordenas prioridades y
+            mantienes la cuenta en movimiento.
           </li>
           <li>
-            <strong>Disposición y capacidad para trabajar en equipo</strong>, con un Director, un Senior Strategist y un
-            equipo de CSMs en paralelo.
+            <strong>Orden operativo fuerte</strong>: Google Workspace, Notion, Slack y hojas de cálculo no te abruman;
+            documentas, haces seguimiento y mantienes todo limpio.
+          </li>
+          <li>
+            <strong>Trabajo en equipo cross-functional</strong>: coordinarte con Director, Strategists, CSMs y
+            operadores sin perder ownership.
           </li>
         </ul>
       </div>
 
       <div class="skills-col">
         <div class="skills-col-header">
-          <div class="skills-col-title">Prioridad media</div>
-          <div class="skills-priority-chip med">Nice to have</div>
+          <div class="skills-col-title">Suma puntos</div>
+          <div class="skills-priority-chip med">Deseable</div>
         </div>
         <ul class="skills-list">
           <li>
-            <strong>Identidad corporativa</strong>: alineación con la cultura y la forma de operar del equipo.
+            <strong>Curiosidad real por IA y software</strong>: ya usas ChatGPT o Claude y te gusta aprender sistemas nuevos.
           </li>
           <li>
-            <strong>Responsable y con atención al detalle</strong>, sobre todo en list building y comunicación al cliente.
+            <strong>Atención al detalle fuerte</strong>, sobre todo en list building, QA y comunicación externa.
           </li>
           <li>
-            <strong>Disposición al aprendizaje</strong>, autonomía y autodidactismo. Te damos los recursos, tú avanzas.
+            <strong>Autonomía y aprendizaje rápido</strong>: te damos contexto y recursos; no necesitas que te lleven de la mano en cada paso.
           </li>
           <li>
-            <strong>Comunicación asertiva</strong>, directa pero respetuosa, en español y en inglés.
+            <strong>Comunicación asertiva</strong>: directa, respetuosa y profesional, en español y en inglés.
           </li>
           <li>
-            <strong>Capacidad de liderazgo</strong>: delegar cuando se requiera, exigir cumplimiento de los tiempos
-            acordados y solicitar ajustes a los entregables cuando sea necesario.
+            <strong>Sentido de ownership y liderazgo</strong>: sabes pedir ajustes, levantar riesgos a tiempo y cerrar loops.
           </li>
         </ul>
       </div>
@@ -1470,8 +1494,8 @@
         <div class="learn-desc">Dominios, cuentas de email, deliverability, self-hosting.</div>
       </div>
       <div class="learn-item">
-        <div class="learn-title"><span class="learn-dot"></span>Client communication</div>
-        <div class="learn-desc">Account management aprendido directo de los seniors y CSMs.</div>
+        <div class="learn-title"><span class="learn-dot"></span>Client + project management</div>
+        <div class="learn-desc">Account management, follow-up, expectation setting y coordinación interna con clientes reales.</div>
       </div>
       <div class="learn-item">
         <div class="learn-title"><span class="learn-dot"></span>Marketing automation</div>
@@ -1484,31 +1508,33 @@
 <!-- FIT -->
 <section class="fit">
   <div class="container">
-    <div class="section-tag reveal">// Honestidad</div>
-    <h2 class="reveal">¿Es este rol para ti?</h2>
+    <div class="section-tag reveal">// Encaje real</div>
+    <h2 class="reveal">¿A quién le queda bien este rol?</h2>
     <div class="fit-grid reveal">
       <div class="fit-col yes">
         <h3>Eres un buen fit si...</h3>
         <ul>
-          <li>Tienes espíritu alto y ganas de crecer. No buscamos experiencia, te entrenamos a fondo en todo lo demás</li>
-          <li>Quieres ganar dinero de verdad y entiendes que el upside aquí está atado a tu performance</li>
+          <li>Quieres crecer rápido en un entorno exigente, con responsabilidad real y feedback directo</li>
+          <li>Tienes excelente project management: sabes priorizar, hacer follow-up y mover varios frentes sin que te persigan</li>
           <li>Ya usas IA en tu día a día y te emociona ir más profundo (Claude Code, automatizaciones, scrapers)</li>
-          <li>Te apasiona darle una experiencia premium a clientes en Estados Unidos</li>
-          <li>Te emociona aprender 5 herramientas nuevas en un mes antes que hacer la misma tarea 5 veces</li>
+          <li>Te importa dar una experiencia premium a clientes en Estados Unidos</li>
+          <li>Te energiza aprender herramientas nuevas y adaptarte rápido</li>
           <li>Tu inglés es avanzado y te sientes cómodo en Zoom y llamadas con clientes de Estados Unidos</li>
-          <li>Eres detallista y organizado, sabes que la calidad y la atención al detalle definen el resultado</li>
-          <li>Recibes feedback bien y aprendes rápido</li>
+          <li>Eres detallista, organizado y consistente; no se te caen los detalles</li>
+          <li>Recibes feedback bien, haces ajustes rápido y no te tomas la corrección personal</li>
           <li>Vives en LATAM, idealmente Medellín o cerca</li>
         </ul>
       </div>
       <div class="fit-col no">
         <h3>No es para ti si...</h3>
         <ul>
-          <li>Buscas un rol estático con tareas repetitivas día tras día</li>
+          <li>Buscas un rol pasivo, con tareas repetitivas y poca responsabilidad</li>
+          <li>Te cuesta manejar varios frentes, prioridades y follow-ups al mismo tiempo</li>
           <li>La IA te incomoda o prefieres evitarla</li>
           <li>El inglés conversacional no está sólido todavía</li>
-          <li>No te emociona aprender de software, scraping o automatización</li>
-          <li>Prefieres no estar de cara al cliente</li>
+          <li>No te gusta aprender software, scraping o automatización</li>
+          <li>No te gusta estar de cara al cliente ni responder con rapidez y criterio</li>
+          <li>Necesitas instrucciones exactas para cada paso y no disfrutas aprender sistemas nuevos</li>
         </ul>
       </div>
     </div>
@@ -1543,7 +1569,7 @@
       </div>
       <div class="learn-item">
         <div class="learn-title"><span class="learn-dot"></span>Acceso a oficina</div>
-        <div class="learn-desc">Oficina física en Medellín disponible todos los días. Vienes cuando te suma, no por obligación.</div>
+        <div class="learn-desc">Base en WeWork El Poblado. Remoto desde LATAM, con ventaja clara si puedes venir seguido.</div>
       </div>
       <div class="learn-item">
         <div class="learn-title"><span class="learn-dot"></span>Bonos por performance</div>
@@ -1561,15 +1587,73 @@
 <section class="office">
   <div class="container">
     <div class="section-tag reveal">// Oficina</div>
-    <h2 class="reveal">Oficina en El Poblado, Medellín, Colombia.</h2>
+    <h2 class="reveal">WeWork El Poblado, Medellín, Colombia.</h2>
     <p class="section-sub reveal">
-      Tenemos oficina física en El Poblado, al lado del Santa Fe Mall y del WeWork. Si vives en la ciudad o cerca,
-      estás invitado a venir todos los días. El equipo trabaja de lunes a viernes de 9 AM a 5 PM con horarios
-      flexibles. Estar en la sala con el equipo es por lejos la forma más rápida de crecer en este rol.
+      Tenemos base en WeWork, en El Poblado, al lado del Santa Fe Mall. Si vives en la ciudad o cerca, puedes
+      trabajar desde la oficina con el equipo. Operamos de lunes a viernes de 9 AM a 5 PM, con flexibilidad y foco
+      en output. Para este rol, estar cerca del equipo en WeWork acelera muchísimo el aprendizaje.
     </p>
     <div class="office-badge reveal">
       <div class="office-pin"></div>
-      Equipo presencial · Lun a Vie · 9 AM a 5 PM
+      WeWork El Poblado · Lun a Vie · 9 AM a 5 PM
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section>
+  <div class="container">
+    <div class="section-tag reveal">// Proceso</div>
+    <h2 class="reveal">Así se ve el proceso de selección.</h2>
+    <p class="section-sub reveal">
+      Queremos movernos rápido, pero con contexto suficiente para que ambos lados evalúen si hay fit real.
+    </p>
+    <div class="learn-grid reveal">
+      <div class="learn-item">
+        <div class="learn-title"><span class="learn-dot"></span>Paso 1 · Formulario</div>
+        <div class="learn-desc">Aplicas en el formulario y nos compartes quién eres, tu contexto y por qué te interesa el rol.</div>
+      </div>
+      <div class="learn-item">
+        <div class="learn-title"><span class="learn-dot"></span>Paso 2 · Revisión</div>
+        <div class="learn-desc">Revisamos aplicaciones de forma continua y contactamos por email a quienes mejor encajen.</div>
+      </div>
+      <div class="learn-item">
+        <div class="learn-title"><span class="learn-dot"></span>Paso 3 · Entrevista</div>
+        <div class="learn-desc">Conversación para evaluar inglés, comunicación, criterio, project management y fit con el equipo.</div>
+      </div>
+      <div class="learn-item">
+        <div class="learn-title"><span class="learn-dot"></span>Paso 4 · Cierre</div>
+        <div class="learn-desc">Si ambos lados ven fit, te explicamos siguiente paso, expectativas del rol y timing de incorporación.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="container">
+    <div class="section-tag reveal">// FAQ</div>
+    <h2 class="reveal">Respuestas rápidas a las preguntas más obvias.</h2>
+    <p class="section-sub reveal">
+      Si esta vacante te interesa, estas son las dudas que normalmente importan antes de aplicar.
+    </p>
+    <div class="learn-grid reveal">
+      <div class="learn-item">
+        <div class="learn-title"><span class="learn-dot"></span>¿Necesito experiencia previa en cold email?</div>
+        <div class="learn-desc">No. Lo técnico, el stack y los frameworks te los enseñamos. Lo que sí esperamos desde el día uno es criterio, organización y project management fuerte.</div>
+      </div>
+      <div class="learn-item">
+        <div class="learn-title"><span class="learn-dot"></span>¿Medellín es obligatorio?</div>
+        <div class="learn-desc">No es obligatorio vivir en Medellín, pero sí en LATAM. Si puedes venir seguido a WeWork con el equipo, tu curva de aprendizaje va a ser más rápida.</div>
+      </div>
+      <div class="learn-item">
+        <div class="learn-title"><span class="learn-dot"></span>¿A quién le reporto?</div>
+        <div class="learn-desc">Le reportas directamente a Jonathan Garcés, Director de Client Success y líder del equipo High Ticket en Colombia.</div>
+      </div>
+      <div class="learn-item">
+        <div class="learn-title"><span class="learn-dot"></span>¿Qué voy a aprender en la práctica?</div>
+        <div class="learn-desc">Apollo, Clay, AI Ark, Apify, Claude Code, list building, client success y el sistema completo con el que operamos campañas reales.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -1580,19 +1664,19 @@
     <div class="section-tag reveal" style="text-align:center">// Aplicar</div>
     <h2 class="reveal" style="margin-left:auto;margin-right:auto;text-align:center">¿Listo para aplicar?</h2>
     <p class="reveal">
-      Una vacante, primera ronda en mayo. Si lo que leíste te prendió, déjanos saber quién eres y por qué encajas.
-      Toma menos de 10 minutos.
+      Estamos revisando aplicaciones de forma continua. Si lo que leíste te prendió, cuéntanos quién eres, por qué
+      encajas y qué te emociona del rol. El formulario toma menos de 10 minutos.
     </p>
     <a href="https://forms.gle/jTkdq4Bk8PdVNCfM9" target="_blank" rel="noopener" class="apply-btn reveal">
       Aplicar ahora →
     </a>
-    <div class="apply-meta reveal">Responde al formulario · revisamos cada aplicación</div>
+    <div class="apply-meta reveal">Formulario corto · revisamos cada aplicación · contacto por email</div>
   </div>
 </section>
 
 <footer>
   <div class="logo">
-    <img src="logo.png" alt="LeadGenJay" />
+    <img src="logo.png" alt="LeadGenJay" width="600" height="200" loading="lazy" decoding="async" />
   </div>
   <div>Cold email, IA y growth ops · Colombia 🇨🇴 · Estados Unidos 🇺🇸 · Equipo 100% global</div>
   <div style="margin-top:1rem;font-size:0.75rem">© 2026 LeadGenJay. Todos los derechos reservados.</div>
@@ -1607,49 +1691,55 @@
     progress.style.width = pct + '%';
   });
 
-  // Reveal on scroll
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('in');
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  function renderCount(el, value) {
+    const prefix = el.dataset.prefix || '$';
+    el.textContent = prefix + value.toLocaleString();
+  }
 
-  // Animated stat counters
   function animateCount(el, target, duration = 1500) {
     const start = performance.now();
-    const prefix = '$';
     function tick(now) {
       const t = Math.min((now - start) / duration, 1);
       const eased = 1 - Math.pow(1 - t, 3);
       const val = Math.floor(target * eased);
-      el.textContent = prefix + val.toLocaleString();
+      renderCount(el, val);
       if (t < 1) requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
   }
-  const statObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const target = parseInt(e.target.dataset.count, 10);
-        animateCount(e.target, target);
-        statObserver.unobserve(e.target);
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    const statObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const target = parseInt(e.target.dataset.count, 10);
+          if (!Number.isNaN(target)) {
+            animateCount(e.target, target);
+          }
+          statObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('[data-count]').forEach(el => statObserver.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+    document.querySelectorAll('[data-count]').forEach(el => {
+      const target = parseInt(el.dataset.count, 10);
+      if (!Number.isNaN(target)) {
+        renderCount(el, target);
       }
     });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('[data-count]').forEach(el => statObserver.observe(el));
-
-  // Path stops interactive
-  const stops = document.querySelectorAll('.path-stop');
-  stops.forEach(stop => {
-    stop.addEventListener('click', () => {
-      stops.forEach(s => s.classList.remove('active'));
-      stop.classList.add('active');
-    });
-  });
+  }
 </script>
 
 </body>
